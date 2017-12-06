@@ -8,13 +8,13 @@
 
 关闭SIP也麻烦，遂用privoxy这个经典软件，它刚好就是安装在/usr/local内，不需要关闭SIP也可以正常使用。
 
-##privoxy安装和使用说明：
+## privoxy安装和使用说明：
 
 确保安装了 Homebrew
 
 Mac OS 下不可或缺的套件管理器： Homebrew
 
-###privoxy 安装
+### privoxy 安装
 
 使用下面命令即可：
 ```shell
@@ -38,9 +38,9 @@ forward-socks5 / localhost:1080 .
 cd /usr/local/etc/privoxy/
 echo 'listen-address 0.0.0.0:8118\nforward-socks5 / localhost:1080 .' >> config
 ```
-** 注意：0.0.0.0 可以让其他设备访问到，若不需要，请修改成用 127.0.0.1；8118是HTTP代理的默认端口；localhost:1080 是 SOCKS5（shadowsocks） 默认的地址，可根据需要自行修改，且注意不要忘了最后有一个空格和点号。**
+**注意：0.0.0.0 可以让其他设备访问到，若不需要，请修改成用 127.0.0.1；8118是HTTP代理的默认端口；localhost:1080 是 SOCKS5（shadowsocks） 默认的地址，可根据需要自行修改，且注意不要忘了最后有一个空格和点号。**
 
-###启动 privoxy
+### 启动 privoxy
 
 因没有安装在系统目录内，所以启动的时候需要打全路径。
 ```shell
@@ -62,9 +62,9 @@ tcp4 0   0  \*.8118       \*.\*     LISTEN
 export http_proxy='http://localhost:8118'
 export https_proxy='http://localhost:8118'
 ```
-** 注意：是当前终端标签页走代理，其他终端标签页或新窗口则不是！**
+**注意：是当前终端标签页走代理，其他终端标签页或新窗口则不是！**
 
-###取消命令：
+### 取消命令：
 ```shell
 unset http_proxy
 unset https_proxy
@@ -83,6 +83,10 @@ export https_proxy='http://localhost:8118'
 使以上配置立即生效
 ```shell
 source  ~/.bash_profile
+```
+### 测试
+```shell
+wget http://www.google.com/
 ```
 
 
