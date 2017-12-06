@@ -79,11 +79,15 @@ vim ~/.bash_profile
 export http_proxy='http://localhost:8118'
 export https_proxy='http://localhost:8118'
 ```
-
 使以上配置立即生效
 ```shell
 source  ~/.bash_profile
 ```
+如果使用zsh在这个.zshrc文件最后追加，然后
+```shell
+source  ~/.zshrc
+```
+
 ### 测试
 ```shell
 wget http://www.google.com/
