@@ -1,3 +1,4 @@
+**以下代码在es5与es6和es6兼容es5运行环境的理解.md**
 ```javascript
 function f () {
   console.log('sdvsd')
