@@ -20,7 +20,8 @@
   },
   "scripts": {
     "link-list": "webpack-dev-server --config ./数据结构学习/链表/webpack.config.js --mode development",
-    "redux": "webpack-dev-server --config ./redux/webpack.config.js --mode development"
+    "redux": "webpack-dev-server --config ./redux/webpack.config.js --mode development",
+    "promise": "webpack-dev-server --config ./Promise/webpack.config.js --mode development"
   },
   "repository": {
     "type": "git",
