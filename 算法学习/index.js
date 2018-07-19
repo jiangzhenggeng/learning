@@ -1,4 +1,18 @@
+var tool = {
+  random (min = 0, max = 9999999) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  },
+  generateArr (len) {
+    let arr = []
+    for (var i = 0; i < len; i++) {
+      arr.push(this.random(1, len))
+    }
+    return arr
+  },
+}
+
 let algorithm = {
+  //快速排序
   quickSortV1 (arr) {
 
     if (arr.length <= 1) {
@@ -28,10 +42,17 @@ let algorithm = {
     return leftArray.concat(eq, rightArray)
 
   },
+  //快速排序(优化版1)
   quickSortV2 (arr, left, right) {
     left = left || 0
     right = right || arr.length - 1
     if (left < right) {
+
+      let swap = function (arr, i, j) {
+        var temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+      }
 
       let partition = function (arr, left, right) {
         let index = left
@@ -45,14 +66,58 @@ let algorithm = {
           }
         }
         // 将基准元素放置到最后的正确位置上
-        swap(arr, index, right)
+        if (arr[index] != arr[right]) {
+          swap(arr, index, right)
+        }
         return index
       }
+
+      let partitionIndex = partition(arr, left, right)
+      if (left < partitionIndex - 1) {
+        this.quickSortV2(arr, left, partitionIndex - 1)
+      }
+      if (partitionIndex + 1 < right) {
+        this.quickSortV2(arr, partitionIndex + 1, right)
+      }
+    }
+    return arr
+  },
+  //快速排序(优化版2)
+  quickSortV3 (arr, left, right) {
+    left = left || 0
+    right = right || arr.length - 1
+    if (left < right) {
 
       let swap = function (arr, i, j) {
         var temp = arr[i]
         arr[i] = arr[j]
         arr[j] = temp
+      }
+
+      let partition = function (arr, left, right) {
+        let mid = left
+        left = left + 1
+
+        while (left <= right) {
+          while (arr[left] < arr[mid]) {
+            left++
+          }
+          while (arr[mid] < arr[right]) {
+            right--
+          }
+          if (left < right) {
+            if (arr[left] != arr[right]) {
+              swap(arr, left, right)
+            }
+            left++
+            right--
+          }
+        }
+        // 将基准元素放置到最后的正确位置上
+        if (arr[mid] != arr[right]) {
+          swap(arr, mid, right)
+        }
+        return right
       }
 
       let partitionIndex = partition(arr, left, right)
@@ -86,6 +151,7 @@ let algorithm = {
     }
     return -1
   },
+  //二分查找(优化版)
   binarySearchV2 (target, array, start, end) {
     start = start || 0
     end = end || array.length - 1
@@ -105,10 +171,20 @@ let algorithm = {
   },
 }
 
+let arr = tool.generateArr(10000)
 
+let arr1 = arr.slice()
+let arr2 = arr.slice()
+let arr3 = arr.slice()
 
+console.time('xm')
+algorithm.quickSortV1(arr1)
+console.timeEnd('xm')
 
+console.time('xm')
+algorithm.quickSortV2(arr2)
+console.timeEnd('xm')
 
-
-
-
+console.time('xm')
+algorithm.quickSortV3(arr3)
+console.timeEnd('xm')
