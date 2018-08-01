@@ -169,6 +169,15 @@ let algorithm = {
     }
     return -1
   },
+  //洗牌算法
+  //保证每个位置是所有数的1/n概率
+  shuffle (arr) {
+    let len = arr.length
+    let index
+    for (let i = 0; i < len; i++) {
+      index = parseInt(Math.random() * (len - 1)) + i
+    }
+  },
 }
 
 let arr = tool.generateArr(10000)
