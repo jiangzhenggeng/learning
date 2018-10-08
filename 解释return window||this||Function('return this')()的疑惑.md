@@ -1,8 +1,0 @@
-### 首先了解Function的构造过程
-
-Function()构造函数和函数直接量差别
-Function()构造函数和函数直接量之间的差别有一点就是：
-使用构造函数Function()创建的函数不使用词法作用域，相反的，它们总是被
-**顶级函数来编译**
-
-[参考地址](https://blog.csdn.net/hikvision_java_gyh/article/details/8932507)
